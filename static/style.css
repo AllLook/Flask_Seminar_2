@@ -1,0 +1,46 @@
+.Hello {
+    margin-left: 30%;
+}
+
+.showcase {
+    margin-left: 25%;
+}
+
+.main-footer{
+
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    background-color: slategray;
+    display: flex;
+
+}
+
+.figure {
+    margin-left: 5%;
+}
+
+.font-card {
+    font-size: 30px;
+    font-family: Calibri;
+    font-style: italic;
+}
+
+.line-1 {
+    margin-left: 20px;
+}
+
+.line-2 {
+    margin-left: 20px;
+}
+
+.text-404{
+    font-size: 45px;
+    margin-left: 30%;
+}
+
+.img-404{
+    margin-left: 10%;
+}

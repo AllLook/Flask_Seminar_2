@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="description" content="Интернет магазин">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>
+        Магазин одежды №1
+    </title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Меню</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/outerwear/">Верхняя одежда</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Summer/">Летняя одежда</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dresses/">Платья</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="/form/" tabindex="-1" aria-disabled="true">Вход|Регистрация</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<h1 class="Hello">Добро пожаловать!</h1>
+
+{% block content %}
+    <div class="showcase">
+        <img src="https://burobiz-a.akamaihd.net/uploads/images/121431/large_2.jpg" width="500" height="500">
+    </div>
+
+{% endblock %}
+
+<footer class="main-footer">
+
+    <img src="data:image/png;base64,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"
+         width="50" height="50">
+
+    <span class="line-1">2023 company </span>
+
+    <span class="line-2">Адрес: г.Москва 3-я улица строителей
+                    Тел: 00 000 00
+                    email: name_name@mail.com
+              </span>
+
+
+</footer>
+</div>
+</body>
+</html>

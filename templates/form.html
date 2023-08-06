@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <form action="/user_form/" method="post">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+
+
+            <input type="text" name="name" placeholder="Имя">
+            <input type="email" email="email" placeholder="Электронная почта">
+            <input type="submit" value="Отправить">
+            <button>
+            <a href="{{url_for('home')}}"> Вернуться на главную </a>
+            </button>
+        </form>
+
+    </div>
+{% endblock %}

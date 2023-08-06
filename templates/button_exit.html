@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form action="/hello/<name>/" method="post">
+
+        Добро пожаловать {{ name }}
+        <button class="button-exit">
+            <a href="/exit/"> Выйти </a>
+        </button>
+    </form>
+
+{% endblock %}
