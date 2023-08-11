@@ -1,10 +1,18 @@
 from flask import Flask
-from flask import render_template, url_for, request, redirect, make_response, session, flash
-from key_session_flash import key_flash
+from flask import render_template, url_for, request, redirect, session, flash
 from markupsafe import escape
+from flask_wtf import CSRFProtect
+from Flask_Seminar_2.user_model import User, db
+
+from Flask_Seminar_2.login_form import LoginForm
 
 app = Flask(__name__)
-app.secret_key = b'9baca58065dd677db6910def5ee0940550d80c249d54d72ee42e9aa653dca417'
+app.config['SECRET_KEY'] = b'9baca58065dd677db6910def5ee0940550d80c249d54d72ee42e9aa653dca417'
+csrf = CSRFProtect(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///user_data_base.db'
+db.init_app(app)
+
+context_user_dict = {}
 
 
 @app.route(escape('/'))
@@ -40,16 +48,27 @@ def dresses():
 
 @app.route(escape("/user_form/"), methods=['GET', 'POST'])
 def user_form():
+    form = LoginForm()
     if request.method == 'POST':
-        name = request.form.get('name')
-        # email = request.form.get('email')
-        session['user_data'] = request.form.get('user', 'email')
+        name = request.form.get('username')
+        email = request.form.get('email')
+        if name not in context_user_dict:
+            context_user_dict[name] = email
+            print(context_user_dict)
 
-        flash('Вы  уже успешно вошли!', 'success')  # если уже есть авторизация
-        # response = make_response('Успешная авторизация')#Так не устанавливаются
-        # response.set_cookie('name', 'email' )
-        return redirect(url_for('redirect_hello', name=name))  # сюда вернуть response=response через запятую
-    return render_template('form.html')
+            session['user_data'] = request.form.get('user', 'email')
+            user = User(username=name, email=email)
+            db.create_all()
+            db.session.add(user)
+            db.session.commit()
+
+            flash('Вы  уже успешно вошли!', 'success')  # если уже есть авторизация
+            # response = make_response('Успешная авторизация')#Так не устанавливаются
+            # response.set_cookie('name', 'email' )
+            return redirect(url_for('redirect_hello', name=name))  # сюда вернуть response=response через запятую
+        else:
+            return render_template('form.html', form=form)
+    return render_template('form.html', form=form)
 
 
 @app.route(escape('/exit/'))
