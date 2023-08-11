@@ -1,9 +1,8 @@
 from flask import Flask
 from flask import render_template, url_for, request, redirect, session, flash
 from markupsafe import escape
-from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import CSRFProtect
-from user_model import User, db
+from Flask_Seminar_2.user_model import User, db
 
 from Flask_Seminar_2.login_form import LoginForm
 
