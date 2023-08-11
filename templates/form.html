@@ -12,16 +12,35 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-
-
-
-            <input type="text" name="name" placeholder="Имя">
-            <input type="email" email="email" placeholder="Электронная почта">
-            <input type="submit" value="Отправить">
+            {{ form.csrf_token }}
+            <p class="open">Войдите или проверте данные для входа</p>
+            <p>
+                {{ form.username.label }}<br>
+                {{ form.username(size=32) }}
+            </p>
+            <p>
+                {{ form.password.label }}<br>
+                {{ form.password(size=32) }}
+            </p>
+            <p>
+                {{ form.confirm_password.label }}<br>
+                {{ form.confirm_password(size=32) }}
+            </p>
+            <p>
+                {{ form.email.label }}<br>
+                {{ form.email(size=32) }}
+            </p>
+            <p>
+                <input type="submit" value="Login">
+            </p>
             <button>
-            <a href="{{url_for('home')}}"> Вернуться на главную </a>
+                <a href="/exit/"> Выйти</a>
             </button>
-        </form>
 
+            <button>
+                <a href="/">На главную</a>
+            </button>
+
+        </form>
     </div>
 {% endblock %}

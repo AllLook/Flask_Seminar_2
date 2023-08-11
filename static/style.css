@@ -6,7 +6,7 @@
     margin-left: 25%;
 }
 
-.main-footer{
+.main-footer {
 
     position: absolute;
     left: 0;
@@ -36,11 +36,16 @@
     margin-left: 20px;
 }
 
-.text-404{
+.text-404 {
     font-size: 45px;
     margin-left: 30%;
 }
 
-.img-404{
+.img-404 {
+    margin-left: 10%;
+}
+
+.open {
+    font-size: 30px;
     margin-left: 10%;
 }
