@@ -52,12 +52,13 @@ def user_form():
     if request.method == 'POST':
         name = request.form.get('username')
         email = request.form.get('email')
+        password = request.form.get('password')
         if name not in context_user_dict:
             context_user_dict[name] = email
             print(context_user_dict)
 
             session['user_data'] = request.form.get('user', 'email')
-            user = User(username=name, email=email)
+            user = User(username=name, email=email, password=hash(password))
             db.create_all()
             db.session.add(user)
             db.session.commit()
